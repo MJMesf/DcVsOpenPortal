@@ -1,11 +1,25 @@
 import csv
+import os
+import glob
 
-# Using a raw string literal to avoid escape sequence issues
-csv_file_path = r'C:\Users\mesfinmj\Downloads\search_opencanada_0bd68f5de9a6e864c7b93261c4aa15006cbb05f7_en.csv'
+def get_catalogue_ids():
+    """
+    Searches for a CSV file in the same directory 
+    and returns a list of IDs found in the file.
+    """
+    script_dir = os.path.dirname(os.path.abspath(__file__))
+    pattern = os.path.join(script_dir, 'search_opencanada_*.csv')
+    matching_files = glob.glob(pattern)
 
-with open(csv_file_path, newline='', encoding='utf-8') as csvfile:
-    reader = csv.DictReader(csvfile)
-    id_list = [row['id'] for row in reader]
+    if not matching_files:
+        print("No matching CSV file found.")
+        return []
 
-print("ID values:", id_list)
-print("Number of IDs:", len(id_list))
+    csv_file_path = matching_files[0]
+
+    with open(csv_file_path, newline='', encoding='utf-8') as csvfile:
+        reader = csv.DictReader(csvfile)
+        id_list = [row['id'] for row in reader]
+
+    return id_list
+
