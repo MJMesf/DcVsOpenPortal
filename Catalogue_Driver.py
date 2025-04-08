@@ -16,7 +16,7 @@ def fetch_catalogue ():
     then save the CSV file to the current working directory.
 
     '''
-    #download_dir = os.getcwd()
+    download_dir = os.getcwd()
 
     # config Edge options
     edge_options = Options()
@@ -68,6 +68,3 @@ def fetch_catalogue ():
         
     finally:
         driver.quit()
-
-
-fetch_catalogue()

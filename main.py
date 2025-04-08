@@ -8,20 +8,21 @@ init()
 
 def main():
     # download current csv from open data portal https://search.open.canada.ca/opendata/  (Agriculture and Agri-Food Canada organization only)
+    print(Fore.BLUE + "Downloading Open Data Portal ID'S\n" + Style.RESET_ALL)
     fetch_catalogue()
 
-    # Get IDs from the downloaded CSV file.
+    # get IDs from the downloaded CSV file
     catalogue_ids = get_catalogue_ids()
     
-    # Get another list of IDs from data catalogue.
+    # get another list of IDs from data catalogue
     davids_ids = get_davids_ids()
     
-    # Find the common IDs.
+    # find common IDs
     duplicate_ids = list(set(catalogue_ids) & set(davids_ids))
     
-
-    print(Fore.GREEN + "Number of IDs in common:", len(duplicate_ids) + Style.RESET_ALL)
     print("Duplicate IDs list:", duplicate_ids)
+    print(Fore.GREEN + "\n\nAbove is list of Duplicate Id's\n\nNumber of IDs in common: " + str(len(duplicate_ids)) + Style.RESET_ALL)
 
 if __name__ == "__main__":
     main()
+
